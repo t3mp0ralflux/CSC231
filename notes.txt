@@ -1,0 +1,575 @@
+-Computer Science - The science and study of how to solve problems faster and mre efficiently.
+	-is a science
+	-must be a problem solver (others, rarely ours)
+	-time and space are two most important resources
+-algorithm can't take 3 years to complete, but must still be accurate
+-algorithm cannot be huge and take large amounts of memory (space)
+-time is more prevalent than space nowadays
+-algorithm - is a step by step set of instructions to solve a problem (recipe is an algorithm to produce a cake)
+-programming - is a tool to implement an algorithm.
+-computable - a problem has an algorithm to solve it
+-incomputable - no algorithm exist to solve a problem
+-tractable - a solution exists to solve a problem with a reasonable amount of time / space. (what is 5+5)
+-intractable - a solution exists to solve a problem with an unreasonable amount of time / space  (deep thought from Hitchhiker)
+
+-memory - an array of bytes
+	-has address and number
+	-starts at 0 and goes up
+	-all data is stored in this form
+-abstract data type (ADT) or Data Type - representation of values and operation on those values
+-Primitive types - types not made up from other types (ie. base type is a byte)
+	-float
+	-int (short, long, signed, unsigned)
+	-char
+	-boolean
+-each types sets a range of values and range of types
+	-float has all numerical values (number line)
+	-int has all integers from -2^31 to 2^31
+	-char has all letters, digits, symbols (256)
+	-bool has true/false
+-operations on primitive
+	-add, subt, mult, div (floating, int, mod, exp)
+	-boolean has and, or, not
+-encapsulation - putting the data (representation) together with operations (interface) into one package or unit. (use class)
+	-The operations manipulate the data
+-turtle might be something to look into
+-Information hiding - we don't want the user program to see or have access to our internal representation (data).  
+		      Only the interface (operations) should be public.
+	Reasons:
+	1) We don't want the user to mess things up.
+	2) We could choose to change the internal representation
+-get pycharm and idle (on the site)
+-init is a constructor (initializes internal rep. of an object)
+-operation overloading - defining multiple definitions for the same operation name or symbol
+
+
+
+
+
+
+
+def main():
+	f1=Fraction(11,13)
+	f2=Fraction(-3,7)
+	f3=f1+f2
+	print(f3)
+	x=str(f3)
+
+
+
+class Fraction:
+	def __init__(self,num,den):
+		self.num=num
+		self.den=den
+	def __str__(self):
+		return(
+	def __add__(self,f)
+
+
+-defining things can overload
+	__add__ overloads + with a new command
+	__sub__  	-
+	__mul__  	*
+	__truediv__  	/
+	__eq__  	==
+	__ne__		!=
+	__lt__  	<
+	__le__		<=
+	__gt__  	>
+	__ge__  	>=
+
+-From (filename) import (class)
+-4/3 == 4/3 being false is due to comparing locations instead of comparing values
+	-f2 points to one location, f4 points to another
+	-f2==f4 compares addresses unless we define and __eq__ function
+-compare to function is __cmp__(self,other):
+	-returns a negative value if self is less than other
+	-returns a positive value if self is greater than other
+	-returns a zero if they are the same
+-a/b=c/d?
+	-ad/bd=cb/db
+	-is ad<cb?
+	-is ad>cb?
+def __cmp__(self,other)
+	num1=self.num*other.den
+	num2=self.dem*other.num
+	return(num1-num2)
+
+def __lt__(self,other)
+	return(self.__cmp__(other)<0)  #takes self, runs compare to with other
+
+
+
+self.__sub__(other) ~ Fraction.__sub__(self,other)
+	takes self and puts it in as first param
+
+def __eq__(Self,other):
+	return self.__cmp__(other) == 0
+
+def __ne__(self,other_:
+	return not self == other
+
+
+class Percentage(Fraction):
+	def __str__(self):
+	return(str(self.num/self.den*100)+'%')
+
+weighted average
+	test 1 = 20%
+	test 2 = 10%
+	test 3 = 40%
+	test 4 = 30%
+
+	test1Score*.2+test2Score*.1..../4
+
+
+-want to have an approximation of how many statements will be executed based on sized
+	-called Big O
+
+-Let T(N) be the running time of an algorithm with input of size N.
+-Def: T(N) = O(f(N)) if there are positive integers c and n0 such that T(N)<=c*f(N) for N>n0
+	-this is called "big-O"
+-gives an upper bound of time execution
+	-loop1 has the big-O of N
+	-loop2 has the big-O of N^2
+	-loop3 has the big-O of N^3
+
+Orders of growth (slower at top) (takes more time to process as you go down the list)
+	Function	Name
+	1		constant
+	logN		Logarithmic
+	log^2N		Log to a power
+	N		Linear
+	NlogN		
+	N^2		Quadratic
+	N^3		Cubic		(gets long here)
+	2^N		Exponential  	(can be any number raised to N) (can be intractable)
+	N!		Factorial	(can be considered intractable)
+
+
+T(N)=6N^2+5N+2
+T(N)=O(N^2)
+	N^2 gets large fast, so others become irrelevant
+when two graphs intersect, that point is n0
+6N^2+5N+2<7N^2 for all N>6
+
+what is the big-O of T(N)=10N^4+7N^3+5N^2+300N+1000?
+	T(N)=O(N^4)
+just need largest degree of polynomial
+T(N)=10478
+T(N)=O(1)
+	constant is constant
+
+Simple Statements:
+	A[i]=2*i+1	T(N)=constant  T(N)=O(1)
+
+Block of Statements
+	i=30		T(N)=c1		---
+	A[i]=2*i*1	T(N)=c2		  |--T(N)=c1+c2+c3  T(N)=O(1)
+	i=i+1		T(N)=c3		---
+
+Branch Statements
+if (i<10):				---
+	A[i]=2*i+1	T(N)=f(n)	  |---T(N)=Max(f(n),g(n))
+else:					  |
+	A[i]=10-2*i+1	T(N)=g(n)	---
+
+Loop Statements
+for i in range(N):			---  T(N)=N*c1 or c*N  = O(N)
+	A[i]=2*i+1	T(N)=c1		---
+
+how long it takes to execute the body (c1), then multiply by the number of iterations (range (N))
+
+for i in range(N):			T(N)=N*N*c1
+	for j in range(N):		T(N)=N*c1
+		A[i][j]=2*i*j+1		T(N)=c1
+=O(N^2)
+
+for i in range(N):			T(N)=N(c5+N*c4+(N*(c1+c2+c3))
+	A[i]=0				T(N)=c5
+	for j in range(N):		T(N)=(N*c4)+(N*(c1+c2+c3))
+		A[i]+=i*j		T(N)=c4
+	for k in range(N):		T(N)=N*(c1+c2+c3)
+		A[i]=k			T(N)=c3
+		if(A[i]<0):		T(N)=c2
+			A[i]=0		T(N)=c1
+O=(N^2)
+
+A=[]
+for i in range(N):			T(N)=N*(2c1N)
+	A.append([])			T(N)=c2
+	for j in range(i+1,N):		T(N)=c1(N/2) or 2c1N
+		A[i].append(i*j)	T(N)=c1
+
+i	j	#of iterations of j
+0	1..n-1	N-1
+1	2..n-1	N-2
+2	3..n-1	N-3
+take the average
+=O(N^2)
+still N^2..T(N)=N/2=O(N)
+
+i=0
+while(i<N):		T(N)=N*f(N)
+	..		T(N)=f(N)
+	..
+	..		T(N)=c2
+	i=i+1		T(N)=c1
+
+=O(N)
+
+lists have head, tail, and size
+
+head points to list node (data is x, next is none)
+
+if (self.isEmpty()):
+	self.head = listNode(x) (this gives an x at the first data node and sets it to the head)
+	self.tail = self.head  (this makes self.tail point to the node)
+	size is 1
+
+if i<=0:
+	self.head = listNode(x, self.head)	(this makes a new listNode, value is x, next pointer is self.head)
+
+elif i>=self.size():
+	self.tail.setNext(listNode(x))	(listNode(x) creates a new one, points to none, then sets the tail to the next value)
+	self.tail = self.tail.getNext()	(sets self.tail to the next value, which was just created)
+
+else:
+	current = self.head	(assigns self.head value to var. "current")
+	count = 0		(inits. count variable at 0)
+	while current != None and count < i-1: 	(while the current isn't none and the count is less than the inserted value)
+		count +=1			(increase the count)
+		current = current.getNext()	(update the current value)
+	current.setNext(listNode(x), current.getNext())	(sets the next listNode to x, points to next value in list, 
+							 then sets the pointer of current to the new one)
+
+self._size += 1  (increases list size by 1)
+
+
+def pop(i=none):
+	if (self.isEmpty()):
+		return None
+	else:
+		if (i==None)
+			i= self.size()-1  (establishes the last position)
+	
+
+	if i<=0:
+   		x = self.head.getData()
+		self.head = self.head.getNext()
+		self.size -= 1
+ 	if (self.head == None):
+ 		self.tail = None
+	return x
+
+	else:
+		current = self.head
+		count = 0
+
+	while (current != None and count <i-1):
+ 		count += 1
+		current = current.getNext()
+	if (current==None):
+		return None
+	x=current.getNext().getData()
+	current.setNext(current.getNext().getNext())
+	self.size-=1
+
+	While (current != None and current.getData != x)
+
+
+Recursion - a function that calls itself
+
+1) Break the problem down into a smaller problem than is in the SAME FORM.
+2) Leap of Faith - assume all recursive calls already work properly
+3) Use the recursive call(s) to finish the problem (works toward base case(s))
+4) Create base case(s) that stops the recursion (needs to be present, cannot be recursive)
+
+n! = {n*(n-1)!} if n<1, 1 if n=1
+
+def factorial(n):
+	if (n <=1):
+		return 1
+	else:
+		return n*factorial(n-1)
+
+def main():
+	print(factorial(10))
+
+
+Given a list of values, find the smallest:
+
+def findMin(theList):
+	if(len(theList)<1):
+		return 999999999
+	elif(len(theList)==1):
+		return theList[0]
+	else:
+	a=findMin(theList[0:len(theList)//2-1])
+	b=findMin(theList[len(theList)//2:len(theList)-1])
+	return (min(a,b))
+
+takes a big list, divides by two, and eventually gets down to the smallest values in the list
+
+searching for a value in a list recursively is NlogN
+searching for a value in a list in a loop is N
+
+if x in myList:  (don't do that, python searches for you, but it might take quite the time)
+
+for i in range(len(myList)):
+	if (x == myList[i])
+		return i
+return None
+complexity of this linear search is O(N)
+	best case = O(1)
+	worst case = O(N)
+	avg. case = O(N/2) = O(N)
+
+recursive tree takes whole statement, then cuts in half each time until it hits the limit that we set
+height of the tree is log2(N)
+	2^N times to reach the size of myList
+
+complexity of recursive search is O(logN)
+	best case = O(logN)
+	worst case = O(NlogN)
+	avg. case = O(1/2NlogN) or (NlogN)
+
+both cases are unsorted
+
+sorted cases are as follows:
+linear search: (big-O is still same, but result faster)
+	best case = O(1)
+	worst case = O(N)
+	avg. case = O(N/2) or O(N)
+
+recursive search:  (called binary search)
+	best case = O(logN)
+	worst case = O(logN)
+	avg. case = O(logN)
+
+sorted lists are much better for very large N values
+
+insertion sort:
+	best case = O(N)
+	worst case = O(N^2)
+	avg. case = O(N^2)
+
+bubble sort:
+	best case = O(N)
+	worst case = O(N^2)
+	avg. case = O(N^2)
+
+merge sort:
+	best case = O(NlogN)
+	worst case = O(NlogN)
+	avg. case = O(NlogN)
+
+quick sort:
+	we pick a pivot value
+	we move values smaller than the pivot value to the left, and values larger to the right
+	we recursively sort each half after that
+	takes N steps to complete
+
+	best case = O(NlogN)
+	worst case = O(N^2)
+	avg. case = O(NlogN)
+
+hashing:
+creates an array of places to put values (buckets)
+each value is "hashed" to a bucket number.  The hash function should be fast (O(1))
+buckets are numbered [0],[1],[2],[3]...[n-1]
+def hash(value):
+	return value % size (% is modulo)
+hash (1000000) -> 1
+	goes in 1
+hash (-75000) -> 2
+hash (44) -> 0
+
+A collision is when more than one value hashed to the same bucket
+
+linear probing: probes forward for an empty spot in the array
+	makes sure that if a collision occurs, it avoids the problem
+
+chaining: makes each bucket a linked list
+
+usually, we make the number of buckets a prime number to improve distribution of values.
+
+we want the hash function to be O(1), and minimize collisions.
+
+we want the number of buckets to be significantly larger than the number of values to minimize collisions
+
+load is lambda = #values/N, where N is the # of buckets
+
+	Hashing w/ linear probing		Hashing w/ chaining
+	lmda <.5	lmda>.5			lmda <.5	lmda>.5
+put()	avg. O(1)	avg. O(N)		avg. O(1)	avg. O(lmda)
+	wrst O(#val)	wrst O(N)		wrst O(lmda)	wrst O(lmda)
+
+get()	avg. O(1)	avg. O(N)		avg. O(1)	avg. O(lmda)
+	wrst O(#val)	wrst O(N)		wrst O(lmda)	wrst O(lmda)
+
+class HashTableProbe:
+	def __init__(self, size = None):
+		if size != None
+			self.size=size
+		else:
+			self.size=
+		self.bucket = [None]*self.size
+	def hash(self,value):
+		
+
+overloading ==
+	def __eq__(self,other)
+
+this overrides == to determine if something is equal
+	can use this for numbers (prevents address errors)
+
+def __eq__(self,other)
+	return (self.key == other.key)
+
+as long as the keys are the same, they will return true
+
+def __ne__(self,other)
+	return (self.key != other.key)
+
+str will change the way that string behaves
+
+hash table chaining will created a table of linked list objects
+	utilize the linked list information and the hash table information
+
+
+working with trees:
+
+Tree - Directed Acyclic graph(DAG)
+	if any cycles, not a tree
+
+A tree is empty or has a root, with zero or more edges to subtrees. (subtrees are also trees)
+
+			Root
+		sub	sub	sub
+	sub	sub	sub	sub	sub
+(kinda like this)
+
+A parent of node A is a node B such that there is an edge from B to A.
+
+A child of node A is a node B such that there is an edge from A to B.
+
+A ancestor of node A is a node B such that there is a path from B to A.
+
+A descendant of node A is a node B such that there is a path from A to B.
+
+A sibling of node a is a node B such that A and B share the same parent (or ancestor)
+
+A leaf is a node A which has no children
+
+A traversal is a visit (and processing) to each node in the tree
+
+An in-order traversal - we visit some children (usually left child), visit current node, then visit remaining children (usually right child).
+
+A pre-order traversal - visit a node before its children
+
+A post-order traversal - visit a node after visiting its children
+
+A binary tree - each node has zero, one, or two children (and no more)
+	introduces concept of left child, right child
+
+In-order traversal of binary tree - visit left descendants before the root, then the right desendants
+
+(a + b * c) + (-(e + f)*g)
+
+						   +
+					       /        \
+					      +	  	 *
+					     / \	/  \
+					    a   *       -   g
+						/\	/
+					       b  c	+
+							/\
+							e f
+
+
+In order - a + b * c + - e + f * g
+
+
+Pre Order - + + a * b c * - + e f g
+
+
+Post Order - a b c * + e f + - g * +
+
+post fix notation is where operators follows the operands
+
+binary trees require recursion
+
+
+class BinaryTree:
+	def __init__(self,data = None, leftChild = None, rightChild = None):
+		self.data = data
+		self.leftChild = leftChild
+		self.rightChild = rightChild
+
+	def isEmpty(self):
+		return self.data == None
+
+	def __str__(self):
+		'''This function does an in-order traversal'''
+		if(	):
+		else:
+			result = " "
+			if(self.getleftChild() != None):
+				result += BinaryTree.__str__(self.getleftChild())
+
+Binary Search Tree is binary tree and the value stored at the root is greater than all the values stored in its left subtree and less than all the values
+stored in its right subtree.  Each subtree must also be a binary search tree
+
+					8
+				4		10
+			3	7			20
+		1					15	24
+
+8 is greater than all the values on the left, and smaller than the right
+recursiveness abound!
+4 needs to be greater than all the values on the left and smaller on the right
+same with 10, 20
+
+binary search tree is like the dictionary example
+logN time to find data
+
+
+def put(self, value):
+	if (self.isEmpty()):
+		self.setData(value)
+
+	elif:
+		if (value < self.getData()):
+			if(self.leftChild() == None):
+				self.setleftChild(BinarySearchTree(value))
+			else:
+				self.leftChild().put(value)
+	else:
+		if(self.rightChild() == None):
+			self.setrightChild(BinarySearchTree(value))
+		else:
+			self.rightChild().put(value)
+
+
+self.getLeftChild.getData
+
+
+Binary Search tree
+	best	worst	avg
+get()	O(1)	O(N)	O(logN)
+put()	O(1)	O(N)	O(logN)
+
+
+AVL Tree - A Binary Search Tree plus for every node in the tree the height of the left subtree and the height of the right subtree differ by at most 1
+
+isBST
+	is the max of the left less than root and is the min of the right greater than the root
+
+
+The height of a node is the maximum distance to any leaf.  The height of a leaf is 0
+
+The height of a non-existant node is -1
+
+need to do single rotation with left child or single rotation with right child depending on where the imbalance is
+
